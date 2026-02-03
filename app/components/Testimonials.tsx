@@ -80,27 +80,20 @@ export default function Testimonials() {
     <section
       id="testimonials"
       ref={ref}
-      className="py-24 bg-[#00704A] relative overflow-hidden"
+      className="py-24 lg:py-32 bg-rolex-green relative overflow-hidden"
     >
-      {/* Background decorations */}
-      <div className="absolute inset-0">
-        <div className="absolute -top-24 -right-24 w-96 h-96 bg-[#D4AF37]/5 rounded-full blur-3xl" />
-        <div className="absolute -bottom-24 -left-24 w-96 h-96 bg-[#005538]/30 rounded-full blur-3xl" />
-      </div>
-
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Section Header */}
         <motion.div
           variants={fadeInUp}
           initial="hidden"
           animate={inView ? "visible" : "hidden"}
-          className="text-center mb-16"
+          className="text-center mb-20"
         >
-          <h2 className="text-4xl sm:text-5xl font-bold font-['Playfair_Display',serif] mb-6 text-white">
-            Ils ont progressé avec{" "}
-            <span className="gradient-text">Deborah-Corp</span>
+          <h2 className="title-display text-4xl sm:text-5xl lg:text-6xl text-white mb-6">
+            ILS ONT <span className="gradient-text">PROGRESSÉ</span>
           </h2>
-          <p className="text-lg text-white/70 max-w-2xl mx-auto">
+          <p className="font-cormorant text-lg sm:text-xl text-white/70 max-w-2xl mx-auto leading-relaxed">
             Des résultats concrets, mesurables. Voici ce que nos élèves et leurs parents en disent.
           </p>
         </motion.div>
@@ -117,39 +110,43 @@ export default function Testimonials() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -20 }}
-              transition={{ duration: 0.4 }}
-              className="bg-[#005538]/50 backdrop-blur-sm rounded-2xl p-8 md:p-10 border border-white/10"
+              transition={{ duration: 0.4, ease: [0.4, 0, 0.2, 1] }}
+              className="bg-rolex-green-dark/50 backdrop-blur-sm rounded-3xl p-10 md:p-12 border border-white/10"
             >
               {/* Quote Icon */}
-              <div className="mb-6">
-                <Quote className="w-10 h-10 text-[#D4AF37]/60" />
+              <div className="mb-8">
+                <div className="w-14 h-14 bg-gradient-to-br from-gold-shine to-pure-gold rounded-2xl flex items-center justify-center">
+                  <Quote className="w-6 h-6 text-rolex-green-dark" />
+                </div>
               </div>
 
               {/* Content */}
-              <blockquote className="text-lg md:text-xl text-white/90 font-light leading-relaxed mb-8">
-                {testimonials[currentIndex].content}
+              <blockquote className="font-cormorant text-xl md:text-2xl text-white/90 leading-relaxed mb-10">
+                &ldquo;{testimonials[currentIndex].content}&rdquo;
               </blockquote>
 
               {/* Result badge */}
-              <div className="flex flex-wrap gap-3 mb-6">
-                <span className="bg-[#D4AF37] text-[#00704A] text-sm font-semibold px-3 py-1 rounded-full">
+              <div className="flex flex-wrap gap-4 mb-8">
+                <span className="bg-gradient-to-r from-gold-shine to-pure-gold text-rolex-green-dark text-sm font-semibold px-4 py-2 rounded-full">
                   {testimonials[currentIndex].result}
                 </span>
-                <span className="bg-white/10 text-white/80 text-sm px-3 py-1 rounded-full">
+                <span className="bg-white/10 text-white/80 text-sm px-4 py-2 rounded-full">
                   {testimonials[currentIndex].duration}
                 </span>
               </div>
 
               {/* Author */}
-              <div className="flex items-center gap-4">
+              <div className="flex items-center gap-5">
                 <div
-                  className="w-12 h-12 rounded-full bg-cover bg-center border-2 border-white/20"
+                  className="w-14 h-14 rounded-full bg-cover bg-center border-2 border-pure-gold/40"
                   style={{
                     backgroundImage: `url('${testimonials[currentIndex].avatar}')`,
                   }}
+                  role="img"
+                  aria-label={`Photo de ${testimonials[currentIndex].name}`}
                 />
                 <div>
-                  <div className="font-medium text-white">
+                  <div className="font-semibold text-white font-playfair text-lg">
                     {testimonials[currentIndex].name}
                   </div>
                   <div className="text-white/60 text-sm">
@@ -161,27 +158,27 @@ export default function Testimonials() {
           </AnimatePresence>
 
           {/* Navigation */}
-          <div className="flex justify-center items-center gap-4 mt-8">
+          <div className="flex justify-center items-center gap-6 mt-10">
             <motion.button
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}
               onClick={prevTestimonial}
-              className="w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center text-white transition-colors"
+              className="w-12 h-12 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center text-white transition-colors"
               aria-label="Témoignage précédent"
             >
-              <ChevronLeft className="w-5 h-5" />
+              <ChevronLeft className="w-6 h-6" />
             </motion.button>
 
             {/* Indicators */}
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-3">
               {testimonials.map((_, index) => (
                 <button
                   key={index}
                   onClick={() => setCurrentIndex(index)}
-                  className={`h-1.5 rounded-full transition-all duration-300 ${
+                  className={`h-2 rounded-full transition-all duration-300 ${
                     index === currentIndex
-                      ? "w-6 bg-[#D4AF37]"
-                      : "w-1.5 bg-white/30 hover:bg-white/50"
+                      ? "w-8 bg-pure-gold"
+                      : "w-2 bg-white/30 hover:bg-white/50"
                   }`}
                   aria-label={`Aller au témoignage ${index + 1}`}
                 />
@@ -192,20 +189,20 @@ export default function Testimonials() {
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}
               onClick={nextTestimonial}
-              className="w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center text-white transition-colors"
+              className="w-12 h-12 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center text-white transition-colors"
               aria-label="Témoignage suivant"
             >
-              <ChevronRight className="w-5 h-5" />
+              <ChevronRight className="w-6 h-6" />
             </motion.button>
           </div>
         </div>
 
-        {/* Stats - more honest and specific */}
+        {/* Stats - Pictabooth style */}
         <motion.div
           variants={fadeInUp}
           initial="hidden"
           animate={inView ? "visible" : "hidden"}
-          className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-8 text-center border-t border-white/10 pt-12"
+          className="mt-20 grid grid-cols-2 md:grid-cols-4 gap-8 text-center border-t border-white/10 pt-16"
         >
           {[
             { value: "+3.2", label: "points gagnés en moyenne" },
@@ -213,12 +210,17 @@ export default function Testimonials() {
             { value: "94%", label: "de réussite au Bac" },
             { value: "89%", label: "recommandent Deborah-Corp" },
           ].map((stat, index) => (
-            <div key={index}>
-              <div className="text-2xl md:text-3xl font-bold text-white font-['Playfair_Display',serif]">
+            <motion.div
+              key={index}
+              initial={{ opacity: 0, y: 20 }}
+              animate={inView ? { opacity: 1, y: 0 } : {}}
+              transition={{ delay: 0.1 * index, duration: 0.6 }}
+            >
+              <div className="text-3xl md:text-4xl font-bold gradient-text font-playfair">
                 {stat.value}
               </div>
-              <div className="text-white/50 text-sm mt-1">{stat.label}</div>
-            </div>
+              <div className="text-white/50 text-sm mt-2">{stat.label}</div>
+            </motion.div>
           ))}
         </motion.div>
       </div>
