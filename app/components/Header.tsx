@@ -2,22 +2,20 @@
 
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X, Sun, Moon } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import Link from "next/link";
 
 const navLinks = [
-  { href: "#hero", label: "Accueil" },
-  { href: "#services", label: "Nos formules" },
+  { href: "#services", label: "Cours Individuels" },
+  { href: "#how-to-book", label: "Comment ça marche" },
+  { href: "#features", label: "Nos Avantages" },
   { href: "#gallery", label: "Programmes" },
-  { href: "#testimonials", label: "Résultats" },
-  { href: "#pricing", label: "Tarifs" },
   { href: "#contact", label: "Contact" },
 ];
 
 export default function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [isDark, setIsDark] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -28,14 +26,6 @@ export default function Header() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  useEffect(() => {
-    if (isDark) {
-      document.documentElement.classList.add("dark");
-    } else {
-      document.documentElement.classList.remove("dark");
-    }
-  }, [isDark]);
-
   return (
     <motion.header
       initial={{ y: -100 }}
@@ -43,68 +33,48 @@ export default function Header() {
       transition={{ duration: 0.6, ease: [0.4, 0, 0.2, 1] }}
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         isScrolled
-          ? "glass shadow-lg py-3"
-          : "bg-transparent py-5"
+          ? "glass shadow-lg py-4"
+          : "bg-cream py-6"
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between">
-          {/* Logo */}
-          <Link href="#hero" className="flex items-center space-x-2">
-            <motion.span
+        {/* Top row: Logo centered, CTA on right */}
+        <div className="flex items-center justify-between mb-4">
+          {/* Spacer for centering */}
+          <div className="hidden lg:block w-32" />
+          
+          {/* Centered Logo */}
+          <Link href="#hero" className="flex flex-col items-center">
+            {/* Logo Icon */}
+            <motion.div
               whileHover={{ scale: 1.05 }}
               transition={{ duration: 0.3 }}
-              className="text-2xl font-bold font-playfair text-rolex-green dark:text-white"
+              className="w-12 h-12 bg-white border-2 border-rolex-green rounded-lg flex items-center justify-center mb-2 shadow-sm"
             >
-              Deborah<span className="gradient-text">-Corp</span>
-            </motion.span>
+              <span className="text-2xl font-bold font-playfair text-rolex-green">D</span>
+            </motion.div>
+            {/* Logo Text */}
+            <span className="text-sm font-semibold tracking-[0.2em] uppercase text-dark-text">
+              DEBORAH-CORP
+            </span>
           </Link>
 
-          {/* Desktop Navigation */}
-          <nav className="hidden lg:flex items-center space-x-10">
-            {navLinks.map((link) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                className="relative text-rolex-green-dark dark:text-white/90 hover:text-rolex-green dark:hover:text-pure-gold transition-colors duration-300 font-medium text-sm tracking-wide underline-grow"
-              >
-                {link.label}
-              </Link>
-            ))}
-          </nav>
-
-          {/* Actions */}
-          <div className="flex items-center space-x-4">
-            {/* Dark Mode Toggle */}
-            <motion.button
-              whileHover={{ scale: 1.1, rotate: 20 }}
-              whileTap={{ scale: 0.95 }}
-              onClick={() => setIsDark(!isDark)}
-              className="p-2 rounded-full bg-cream dark:bg-white/10 hover:bg-cream-dark dark:hover:bg-white/20 transition-colors"
-              aria-label={isDark ? "Activer le mode clair" : "Activer le mode sombre"}
-            >
-              {isDark ? (
-                <Sun className="w-5 h-5 text-pure-gold" />
-              ) : (
-                <Moon className="w-5 h-5 text-rolex-green" />
-              )}
-            </motion.button>
-
-            {/* CTA Button */}
+          {/* CTA Button - Right side */}
+          <div className="flex items-center gap-4">
             <motion.a
               href="#contact"
               whileHover={{ scale: 1.02, y: -2 }}
               whileTap={{ scale: 0.98 }}
-              className="hidden sm:block bg-rolex-green hover:bg-rolex-green-dark text-white font-semibold px-6 py-2.5 rounded-lg transition-all duration-300 shadow-md hover:shadow-lg"
+              className="hidden sm:block bg-rolex-green hover:bg-rolex-green-dark text-white font-medium px-7 py-2.5 rounded-md transition-all duration-300 text-sm tracking-wide"
             >
-              S&apos;inscrire
+              CONTACT
             </motion.a>
 
             {/* Mobile Menu Button */}
             <motion.button
               whileTap={{ scale: 0.95 }}
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="lg:hidden p-2 rounded-md text-rolex-green dark:text-white"
+              className="lg:hidden p-2 rounded-md text-dark-text"
               aria-label={isMobileMenuOpen ? "Fermer le menu" : "Ouvrir le menu"}
             >
               {isMobileMenuOpen ? (
@@ -115,6 +85,19 @@ export default function Header() {
             </motion.button>
           </div>
         </div>
+
+        {/* Desktop Navigation - Centered below logo */}
+        <nav className="hidden lg:flex items-center justify-center space-x-10">
+          {navLinks.map((link) => (
+            <Link
+              key={link.href}
+              href={link.href}
+              className="relative text-dark-text hover:text-rolex-green transition-colors duration-300 font-medium text-sm tracking-wide underline-grow"
+            >
+              {link.label}
+            </Link>
+          ))}
+        </nav>
       </div>
 
       {/* Mobile Menu */}
@@ -125,7 +108,7 @@ export default function Header() {
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.3 }}
-            className="lg:hidden bg-cream dark:bg-dark-bg/98 backdrop-blur-lg border-t border-cream-dark dark:border-white/10"
+            className="lg:hidden bg-cream border-t border-cream-dark"
           >
             <nav className="flex flex-col px-4 py-4 space-y-4">
               {navLinks.map((link, index) => (
@@ -138,7 +121,7 @@ export default function Header() {
                   <Link
                     href={link.href}
                     onClick={() => setIsMobileMenuOpen(false)}
-                    className="block text-rolex-green-dark dark:text-white/90 hover:text-rolex-green dark:hover:text-pure-gold transition-colors font-medium py-2"
+                    className="block text-dark-text hover:text-rolex-green transition-colors font-medium py-2"
                   >
                     {link.label}
                   </Link>
@@ -148,11 +131,11 @@ export default function Header() {
                 href="#contact"
                 initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: 0.6 }}
+                transition={{ delay: 0.5 }}
                 onClick={() => setIsMobileMenuOpen(false)}
-                className="bg-rolex-green text-white font-semibold px-6 py-3 rounded-lg text-center"
+                className="bg-rolex-green text-white font-semibold px-6 py-3 rounded-md text-center"
               >
-                S&apos;inscrire Maintenant
+                Réserver un cours
               </motion.a>
             </nav>
           </motion.div>

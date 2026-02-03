@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 :root {
-  /* Palette Deborah-Corp */
+  /* Deborah-Corp Color Palette */
   --rolex-green: #00704A;
   --rolex-green-light: #008C5A;
   --rolex-green-dark: #005538;
@@ -13,18 +13,17 @@
   --light-text: #F5F5F5;
   --dark-text: #1A1A1A;
   
-  /* Pictabooth-inspired colors */
+  /* Cream tones for Pictabooth-style layout */
   --cream: #F5F3EF;
   --cream-dark: #E8E5DF;
   --text-gray: #555555;
   
-  --background: #FAFAFA;
+  --background: #F5F3EF;
   --foreground: #1A1A1A;
   
   /* Fonts */
   --font-playfair: 'Playfair Display', Georgia, serif;
-  --font-cormorant: 'Cormorant Garamond', Georgia, serif;
-  --font-inter: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-montserrat: 'Montserrat', -apple-system, BlinkMacSystemFont, sans-serif;
   
   /* Custom easing */
   --ease-smooth: cubic-bezier(0.4, 0, 0.2, 1);
@@ -66,32 +65,42 @@ html {
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: var(--font-inter), Arial, Helvetica, sans-serif;
+  font-family: var(--font-montserrat), Arial, Helvetica, sans-serif;
   overflow-x: hidden;
 }
 
-/* Pictabooth typography */
+/* Typography */
 .font-playfair {
   font-family: var(--font-playfair);
 }
 
-.font-cormorant {
-  font-family: var(--font-cormorant);
+.font-sans {
+  font-family: var(--font-montserrat);
 }
 
+/* Main title style - Serif uppercase with generous letter-spacing */
 .title-display {
   font-family: var(--font-playfair);
-  font-weight: 900;
+  font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.05em;
   line-height: 1.1;
 }
 
+/* Body text style */
 .body-text {
-  font-family: var(--font-cormorant);
-  font-size: 18px;
-  line-height: 1.8;
+  font-family: var(--font-montserrat);
+  font-size: 16px;
+  line-height: 1.6;
   color: var(--text-gray);
+}
+
+/* Gradient text with Deborah colors */
+.gradient-text {
+  background: linear-gradient(135deg, var(--pure-gold) 0%, var(--gold-shine) 50%, var(--pure-gold) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
 /* Custom scrollbar */
@@ -100,7 +109,7 @@ body {
 }
 
 ::-webkit-scrollbar-track {
-  background: var(--dark-bg);
+  background: var(--cream);
 }
 
 ::-webkit-scrollbar-thumb {
@@ -112,42 +121,7 @@ body {
   background: var(--rolex-green-light);
 }
 
-/* Shimmer animation for buttons */
-@keyframes shimmer {
-  0% {
-    background-position: -200% center;
-  }
-  100% {
-    background-position: 200% center;
-  }
-}
-
-.shimmer-btn {
-  background: linear-gradient(
-    90deg,
-    var(--pure-gold) 0%,
-    var(--gold-shine) 25%,
-    var(--pure-gold) 50%,
-    var(--gold-shine) 75%,
-    var(--pure-gold) 100%
-  );
-  background-size: 200% auto;
-  animation: shimmer 3s ease-in-out infinite;
-}
-
-/* Typewriter cursor blink */
-@keyframes blink {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0; }
-}
-
-.cursor-blink::after {
-  content: '|';
-  animation: blink 0.8s step-end infinite;
-  color: var(--pure-gold);
-}
-
-/* Underline grow animation - Pictabooth style */
+/* Underline grow animation */
 .underline-grow {
   position: relative;
 }
@@ -158,7 +132,7 @@ body {
   bottom: -2px;
   left: 0;
   width: 0;
-  height: 2px;
+  height: 1px;
   background: var(--pure-gold);
   transition: width 0.3s var(--ease-smooth);
 }
@@ -167,56 +141,29 @@ body {
   width: 100%;
 }
 
-/* Gold decorative underline */
-.gold-underline {
-  position: relative;
-}
-
-.gold-underline::after {
+/* Decorative line under title */
+.title-line::after {
   content: '';
-  position: absolute;
-  bottom: -12px;
-  left: 0;
-  width: 200px;
-  height: 3px;
-  background: linear-gradient(90deg, var(--pure-gold), var(--gold-shine), var(--pure-gold));
+  display: block;
+  width: 60px;
+  height: 2px;
+  background: var(--pure-gold);
+  margin: 16px auto 0;
 }
 
-/* Glassmorphism - Pictabooth style */
+/* Glassmorphism */
 .glass {
-  background: rgba(245, 243, 239, 0.9);
+  background: rgba(245, 243, 239, 0.95);
   backdrop-filter: blur(12px);
   border-bottom: 1px solid var(--cream-dark);
 }
 
 .dark .glass {
-  background: rgba(0, 0, 0, 0.3);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(0, 0, 0, 0.8);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-/* Gradient text */
-.gradient-text {
-  background: linear-gradient(135deg, var(--pure-gold) 0%, var(--gold-shine) 50%, var(--pure-gold) 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-/* Pulse animation */
-@keyframes pulse-gold {
-  0%, 100% {
-    box-shadow: 0 0 0 0 rgba(212, 175, 55, 0.4);
-  }
-  50% {
-    box-shadow: 0 0 0 15px rgba(212, 175, 55, 0);
-  }
-}
-
-.pulse-gold {
-  animation: pulse-gold 2s ease-in-out infinite;
-}
-
-/* Pictabooth-style shadows */
+/* Shadows */
 .shadow-soft {
   box-shadow: 0 10px 40px rgba(0, 112, 74, 0.08);
 }
@@ -231,41 +178,40 @@ body {
 }
 
 .card-hover:hover {
-  transform: translateY(-12px);
-}
-
-/* Gold circle for step numbers */
-.step-circle {
-  width: 60px;
-  height: 60px;
-  border-radius: 50%;
-  background: linear-gradient(135deg, var(--gold-shine), var(--pure-gold));
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-family: var(--font-playfair);
-  font-weight: 700;
-  font-size: 24px;
-  color: var(--rolex-green-dark);
-  box-shadow: 0 4px 12px rgba(212, 175, 55, 0.4);
-}
-
-/* Pill card style for How to Book */
-.pill-card {
-  background: var(--rolex-green);
-  border-radius: 80px;
-  padding: 50px 40px;
-  min-height: 280px;
-  box-shadow: 0 20px 60px rgba(0, 112, 74, 0.2);
-  transition: all 0.4s var(--ease-smooth);
-}
-
-.pill-card:hover {
   transform: translateY(-8px);
-  box-shadow: 0 30px 80px rgba(0, 112, 74, 0.3);
 }
 
-/* Section backgrounds alternating */
+/* Pill shape for booking steps */
+.pill-step {
+  background: var(--rolex-green);
+  border-radius: 50px;
+  padding: 20px 40px;
+  color: white;
+  font-family: var(--font-montserrat);
+  transition: all 0.3s var(--ease-smooth);
+}
+
+.pill-step:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 40px rgba(0, 112, 74, 0.3);
+}
+
+/* Large serif numbers for steps */
+.step-number {
+  font-family: var(--font-playfair);
+  font-size: 80px;
+  font-weight: 400;
+  line-height: 1;
+  color: var(--dark-text);
+}
+
+@media (min-width: 1024px) {
+  .step-number {
+    font-size: 120px;
+  }
+}
+
+/* Section backgrounds */
 .bg-cream {
   background-color: var(--cream);
 }
@@ -309,4 +255,27 @@ a:focus-visible {
   clip: rect(0, 0, 0, 0);
   white-space: nowrap;
   border: 0;
+}
+
+/* Masonry grid for photo gallery */
+.masonry-grid {
+  column-count: 2;
+  column-gap: 10px;
+}
+
+@media (min-width: 768px) {
+  .masonry-grid {
+    column-count: 3;
+  }
+}
+
+@media (min-width: 1024px) {
+  .masonry-grid {
+    column-count: 4;
+  }
+}
+
+.masonry-grid-item {
+  break-inside: avoid;
+  margin-bottom: 10px;
 }
