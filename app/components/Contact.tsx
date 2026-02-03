@@ -89,27 +89,20 @@ export default function Contact() {
     <section
       id="contact"
       ref={ref}
-      className="py-24 bg-[#0A0A0A] relative overflow-hidden"
+      className="py-24 lg:py-32 bg-cream dark:bg-dark-bg relative overflow-hidden"
     >
-      {/* Background decorations */}
-      <div className="absolute inset-0">
-        <div className="absolute top-0 right-0 w-1/2 h-1/2 bg-gradient-to-bl from-[#00704A]/10 to-transparent" />
-        <div className="absolute bottom-0 left-0 w-1/3 h-1/3 bg-gradient-to-tr from-[#D4AF37]/5 to-transparent" />
-      </div>
-
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Section Header */}
         <motion.div
           variants={fadeInUp}
           initial="hidden"
           animate={inView ? "visible" : "hidden"}
-          className="text-center mb-16"
+          className="text-center mb-20"
         >
-          <h2 className="text-4xl sm:text-5xl font-bold font-['Playfair_Display',serif] mb-6 text-white">
-            Réservez votre cours{" "}
-            <span className="gradient-text">d&apos;essai gratuit</span>
+          <h2 className="title-display text-4xl sm:text-5xl lg:text-6xl text-dark-text dark:text-light-text mb-6">
+            RÉSERVEZ VOTRE <span className="gradient-text">COURS D&apos;ESSAI</span>
           </h2>
-          <p className="text-lg text-white/70 max-w-2xl mx-auto">
+          <p className="font-cormorant text-lg sm:text-xl text-text-gray dark:text-light-text/70 max-w-2xl mx-auto leading-relaxed">
             Parlez-nous de votre situation. Un conseiller pédagogique vous rappelle 
             sous 24h pour organiser votre premier cours.
           </p>
@@ -125,14 +118,14 @@ export default function Contact() {
           <motion.div variants={fadeInUp}>
             <form
               onSubmit={handleSubmit(onSubmit)}
-              className="bg-[#1a1a1a] rounded-2xl p-8 border border-white/10"
+              className="bg-white dark:bg-[#1a1a1a] rounded-3xl p-10 shadow-soft"
             >
               <div className="grid sm:grid-cols-2 gap-6 mb-6">
                 {/* Name */}
                 <div>
                   <label
                     htmlFor="name"
-                    className="block text-white/80 text-sm font-medium mb-2"
+                    className="block text-dark-text dark:text-white/80 text-sm font-medium mb-3"
                   >
                     Nom de l&apos;élève ou du parent
                   </label>
@@ -140,11 +133,11 @@ export default function Contact() {
                     {...register("name")}
                     type="text"
                     id="name"
-                    className="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-white placeholder:text-white/30 focus:outline-none focus:border-[#00704A]/50 focus:ring-1 focus:ring-[#00704A]/50 transition-all"
+                    className="w-full bg-cream/50 dark:bg-white/5 border border-cream-dark dark:border-white/10 rounded-xl px-5 py-4 text-dark-text dark:text-white placeholder:text-text-gray/50 focus:outline-none focus:border-rolex-green/50 focus:ring-2 focus:ring-rolex-green/20 transition-all"
                     placeholder="Votre nom"
                   />
                   {errors.name && (
-                    <p className="text-red-400 text-xs mt-1">
+                    <p className="text-red-500 text-xs mt-2">
                       {errors.name.message}
                     </p>
                   )}
@@ -154,7 +147,7 @@ export default function Contact() {
                 <div>
                   <label
                     htmlFor="email"
-                    className="block text-white/80 text-sm font-medium mb-2"
+                    className="block text-dark-text dark:text-white/80 text-sm font-medium mb-3"
                   >
                     Email
                   </label>
@@ -162,11 +155,11 @@ export default function Contact() {
                     {...register("email")}
                     type="email"
                     id="email"
-                    className="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-white placeholder:text-white/30 focus:outline-none focus:border-[#00704A]/50 focus:ring-1 focus:ring-[#00704A]/50 transition-all"
+                    className="w-full bg-cream/50 dark:bg-white/5 border border-cream-dark dark:border-white/10 rounded-xl px-5 py-4 text-dark-text dark:text-white placeholder:text-text-gray/50 focus:outline-none focus:border-rolex-green/50 focus:ring-2 focus:ring-rolex-green/20 transition-all"
                     placeholder="votre@email.com"
                   />
                   {errors.email && (
-                    <p className="text-red-400 text-xs mt-1">
+                    <p className="text-red-500 text-xs mt-2">
                       {errors.email.message}
                     </p>
                   )}
@@ -176,7 +169,7 @@ export default function Contact() {
                 <div>
                   <label
                     htmlFor="phone"
-                    className="block text-white/80 text-sm font-medium mb-2"
+                    className="block text-dark-text dark:text-white/80 text-sm font-medium mb-3"
                   >
                     Téléphone
                   </label>
@@ -184,7 +177,7 @@ export default function Contact() {
                     {...register("phone")}
                     type="tel"
                     id="phone"
-                    className="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-white placeholder:text-white/30 focus:outline-none focus:border-[#00704A]/50 focus:ring-1 focus:ring-[#00704A]/50 transition-all"
+                    className="w-full bg-cream/50 dark:bg-white/5 border border-cream-dark dark:border-white/10 rounded-xl px-5 py-4 text-dark-text dark:text-white placeholder:text-text-gray/50 focus:outline-none focus:border-rolex-green/50 focus:ring-2 focus:ring-rolex-green/20 transition-all"
                     placeholder="06 12 34 56 78"
                   />
                 </div>
@@ -193,26 +186,26 @@ export default function Contact() {
                 <div>
                   <label
                     htmlFor="studentLevel"
-                    className="block text-white/80 text-sm font-medium mb-2"
+                    className="block text-dark-text dark:text-white/80 text-sm font-medium mb-3"
                   >
                     Niveau de l&apos;élève
                   </label>
                   <select
                     {...register("studentLevel")}
                     id="studentLevel"
-                    className="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-[#00704A]/50 focus:ring-1 focus:ring-[#00704A]/50 transition-all"
+                    className="w-full bg-cream/50 dark:bg-white/5 border border-cream-dark dark:border-white/10 rounded-xl px-5 py-4 text-dark-text dark:text-white focus:outline-none focus:border-rolex-green/50 focus:ring-2 focus:ring-rolex-green/20 transition-all"
                   >
-                    <option value="" className="bg-[#1a1a1a]">
+                    <option value="" className="bg-white dark:bg-[#1a1a1a]">
                       Sélectionnez...
                     </option>
                     {studentLevels.map((level) => (
-                      <option key={level} value={level} className="bg-[#1a1a1a]">
+                      <option key={level} value={level} className="bg-white dark:bg-[#1a1a1a]">
                         {level}
                       </option>
                     ))}
                   </select>
                   {errors.studentLevel && (
-                    <p className="text-red-400 text-xs mt-1">
+                    <p className="text-red-500 text-xs mt-2">
                       {errors.studentLevel.message}
                     </p>
                   )}
@@ -223,36 +216,36 @@ export default function Contact() {
               <div className="mb-6">
                 <label
                   htmlFor="subject"
-                  className="block text-white/80 text-sm font-medium mb-2"
+                  className="block text-dark-text dark:text-white/80 text-sm font-medium mb-3"
                 >
                   Votre besoin
                 </label>
                 <select
                   {...register("subject")}
                   id="subject"
-                  className="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-[#00704A]/50 focus:ring-1 focus:ring-[#00704A]/50 transition-all"
+                  className="w-full bg-cream/50 dark:bg-white/5 border border-cream-dark dark:border-white/10 rounded-xl px-5 py-4 text-dark-text dark:text-white focus:outline-none focus:border-rolex-green/50 focus:ring-2 focus:ring-rolex-green/20 transition-all"
                 >
-                  <option value="" className="bg-[#1a1a1a]">
+                  <option value="" className="bg-white dark:bg-[#1a1a1a]">
                     Sélectionnez...
                   </option>
                   {subjects.map((subject) => (
-                    <option key={subject} value={subject} className="bg-[#1a1a1a]">
+                    <option key={subject} value={subject} className="bg-white dark:bg-[#1a1a1a]">
                       {subject}
                     </option>
                   ))}
                 </select>
                 {errors.subject && (
-                  <p className="text-red-400 text-xs mt-1">
+                  <p className="text-red-500 text-xs mt-2">
                     {errors.subject.message}
                   </p>
                 )}
               </div>
 
               {/* Message */}
-              <div className="mb-6">
+              <div className="mb-8">
                 <label
                   htmlFor="message"
-                  className="block text-white/80 text-sm font-medium mb-2"
+                  className="block text-dark-text dark:text-white/80 text-sm font-medium mb-3"
                 >
                   Décrivez brièvement la situation
                 </label>
@@ -260,11 +253,11 @@ export default function Contact() {
                   {...register("message")}
                   id="message"
                   rows={4}
-                  className="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-white placeholder:text-white/30 focus:outline-none focus:border-[#00704A]/50 focus:ring-1 focus:ring-[#00704A]/50 transition-all resize-none"
+                  className="w-full bg-cream/50 dark:bg-white/5 border border-cream-dark dark:border-white/10 rounded-xl px-5 py-4 text-dark-text dark:text-white placeholder:text-text-gray/50 focus:outline-none focus:border-rolex-green/50 focus:ring-2 focus:ring-rolex-green/20 transition-all resize-none"
                   placeholder="Ex: Mon fils est en 3ème et a du mal avec les équations. Il a un contrôle important dans 3 semaines..."
                 />
                 {errors.message && (
-                  <p className="text-red-400 text-xs mt-1">
+                  <p className="text-red-500 text-xs mt-2">
                     {errors.message.message}
                   </p>
                 )}
@@ -275,10 +268,10 @@ export default function Contact() {
                 <motion.div
                   initial={{ opacity: 0, y: -10 }}
                   animate={{ opacity: 1, y: 0 }}
-                  className="mb-6 p-4 bg-[#00704A]/20 border border-[#00704A]/30 rounded-lg flex items-center gap-3"
+                  className="mb-8 p-5 bg-rolex-green/10 border border-rolex-green/20 rounded-xl flex items-center gap-4"
                 >
-                  <CheckCircle className="w-5 h-5 text-[#00704A]" />
-                  <p className="text-white/90 text-sm">
+                  <CheckCircle className="w-6 h-6 text-rolex-green" />
+                  <p className="text-dark-text dark:text-white/90 text-sm">
                     Merci ! Nous vous recontacterons dans les 24h pour organiser votre cours d&apos;essai gratuit.
                   </p>
                 </motion.div>
@@ -288,12 +281,12 @@ export default function Contact() {
               <motion.button
                 type="submit"
                 disabled={isSubmitting || submitSuccess}
-                whileHover={{ scale: 1.01 }}
+                whileHover={{ scale: 1.01, y: -2 }}
                 whileTap={{ scale: 0.99 }}
-                className="w-full bg-[#00704A] hover:bg-[#005538] text-white font-medium py-4 rounded-full flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+                className="w-full bg-rolex-green hover:bg-rolex-green-dark text-white font-semibold py-5 rounded-xl flex items-center justify-center gap-3 disabled:opacity-50 disabled:cursor-not-allowed transition-colors shadow-lg hover:shadow-xl"
               >
                 {isSubmitting ? (
-                  <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin" />
+                  <div className="w-6 h-6 border-2 border-white border-t-transparent rounded-full animate-spin" />
                 ) : (
                   <>
                     <Send className="w-5 h-5" />
@@ -302,7 +295,7 @@ export default function Contact() {
                 )}
               </motion.button>
 
-              <p className="text-white/40 text-xs text-center mt-4">
+              <p className="text-text-gray/60 dark:text-white/40 text-xs text-center mt-5">
                 Sans engagement · Réponse sous 24h
               </p>
             </form>
@@ -311,21 +304,21 @@ export default function Contact() {
           {/* Contact Info */}
           <motion.div variants={fadeInUp} className="space-y-6">
             {/* Contact Info Cards */}
-            <div className="grid sm:grid-cols-2 gap-4">
+            <div className="grid sm:grid-cols-2 gap-5">
               {contactInfo.map((info, index) => (
                 <motion.div
                   key={index}
-                  whileHover={{ scale: 1.02 }}
-                  className="bg-[#1a1a1a] rounded-xl p-5 border border-white/10 hover:border-[#00704A]/30 transition-all"
+                  whileHover={{ scale: 1.02, y: -4 }}
+                  className="bg-white dark:bg-[#1a1a1a] rounded-2xl p-6 shadow-soft hover:shadow-soft-hover transition-all"
                 >
                   <div className="flex items-start gap-4">
-                    <div className="w-10 h-10 bg-[#00704A]/20 rounded-lg flex items-center justify-center flex-shrink-0">
-                      <info.icon className="w-5 h-5 text-[#00704A]" />
+                    <div className="w-12 h-12 bg-gradient-to-br from-gold-shine/20 to-pure-gold/20 rounded-xl flex items-center justify-center flex-shrink-0">
+                      <info.icon className="w-5 h-5 text-pure-gold" />
                     </div>
                     <div>
-                      <h4 className="text-white font-medium text-sm">{info.title}</h4>
-                      <p className="text-white/80 text-sm mt-1">{info.content}</p>
-                      <p className="text-white/40 text-xs mt-0.5">{info.subtext}</p>
+                      <h4 className="text-dark-text dark:text-white font-medium">{info.title}</h4>
+                      <p className="text-dark-text/80 dark:text-white/80 text-sm mt-1">{info.content}</p>
+                      <p className="text-text-gray/60 dark:text-white/40 text-xs mt-0.5">{info.subtext}</p>
                     </div>
                   </div>
                 </motion.div>
@@ -333,24 +326,24 @@ export default function Contact() {
             </div>
 
             {/* FAQ Section */}
-            <div className="bg-[#1a1a1a] rounded-xl p-6 border border-white/10">
-              <h4 className="text-white font-semibold mb-4">Questions fréquentes</h4>
-              <div className="space-y-4">
+            <div className="bg-white dark:bg-[#1a1a1a] rounded-2xl p-8 shadow-soft">
+              <h4 className="text-dark-text dark:text-white font-semibold font-playfair text-lg mb-6">Questions fréquentes</h4>
+              <div className="space-y-6">
                 <div>
-                  <p className="text-white/80 text-sm font-medium">Le cours d&apos;essai est-il vraiment gratuit ?</p>
-                  <p className="text-white/50 text-sm mt-1">
+                  <p className="text-dark-text dark:text-white/80 font-medium">Le cours d&apos;essai est-il vraiment gratuit ?</p>
+                  <p className="font-cormorant text-text-gray dark:text-white/50 mt-2 leading-relaxed">
                     Oui, le premier cours (1h) est offert, sans engagement. C&apos;est l&apos;occasion de rencontrer le professeur et de faire le point sur vos besoins.
                   </p>
                 </div>
                 <div>
-                  <p className="text-white/80 text-sm font-medium">Comment se passe le premier contact ?</p>
-                  <p className="text-white/50 text-sm mt-1">
+                  <p className="text-dark-text dark:text-white/80 font-medium">Comment se passe le premier contact ?</p>
+                  <p className="font-cormorant text-text-gray dark:text-white/50 mt-2 leading-relaxed">
                     Après votre demande, un conseiller vous rappelle sous 24h pour comprendre votre situation et vous proposer le professeur adapté.
                   </p>
                 </div>
                 <div>
-                  <p className="text-white/80 text-sm font-medium">Puis-je changer de professeur ?</p>
-                  <p className="text-white/50 text-sm mt-1">
+                  <p className="text-dark-text dark:text-white/80 font-medium">Puis-je changer de professeur ?</p>
+                  <p className="font-cormorant text-text-gray dark:text-white/50 mt-2 leading-relaxed">
                     Bien sûr. Si le feeling ne passe pas, on vous propose un autre professeur sans frais supplémentaires.
                   </p>
                 </div>
@@ -358,18 +351,18 @@ export default function Contact() {
             </div>
 
             {/* Quick CTA */}
-            <div className="bg-[#00704A] rounded-xl p-6 text-center">
-              <h4 className="text-white font-semibold mb-2">
+            <div className="bg-rolex-green rounded-2xl p-8 text-center">
+              <h4 className="text-white font-semibold font-playfair text-lg mb-3">
                 Besoin d&apos;aide rapidement ?
               </h4>
-              <p className="text-white/70 text-sm mb-4">
+              <p className="font-cormorant text-white/70 mb-6">
                 Appelez-nous directement, on répond du lundi au samedi.
               </p>
               <a
                 href="tel:+33123456789"
-                className="inline-flex items-center gap-2 bg-white text-[#00704A] font-medium px-6 py-2.5 rounded-full hover:bg-[#D4AF37] transition-colors text-sm"
+                className="inline-flex items-center gap-3 bg-white text-rolex-green font-semibold px-8 py-3 rounded-xl hover:bg-pure-gold transition-colors shadow-lg"
               >
-                <Phone className="w-4 h-4" />
+                <Phone className="w-5 h-5" />
                 01 23 45 67 89
               </a>
             </div>

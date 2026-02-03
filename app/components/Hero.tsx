@@ -1,46 +1,11 @@
 "use client";
 
-import { useState, useEffect, useMemo } from "react";
 import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import { ChevronDown, ArrowRight } from "lucide-react";
 
 export default function Hero() {
-  const [displayText, setDisplayText] = useState("");
-  const [textIndex, setTextIndex] = useState(0);
-  const [isDeleting, setIsDeleting] = useState(false);
   const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.1 });
-
-  const headlines = useMemo(() => [
-    "Comprendre les maths",
-    "Progresser à son rythme",
-    "Réussir ses examens",
-  ], []);
-
-  useEffect(() => {
-    const currentText = headlines[textIndex];
-    const timeout = setTimeout(
-      () => {
-        if (!isDeleting) {
-          if (displayText.length < currentText.length) {
-            setDisplayText(currentText.slice(0, displayText.length + 1));
-          } else {
-            setTimeout(() => setIsDeleting(true), 2000);
-          }
-        } else {
-          if (displayText.length > 0) {
-            setDisplayText(displayText.slice(0, -1));
-          } else {
-            setIsDeleting(false);
-            setTextIndex((prev) => (prev + 1) % headlines.length);
-          }
-        }
-      },
-      isDeleting ? 50 : 100
-    );
-
-    return () => clearTimeout(timeout);
-  }, [displayText, isDeleting, textIndex, headlines]);
 
   const scrollToServices = () => {
     document.getElementById("services")?.scrollIntoView({ behavior: "smooth" });
@@ -50,130 +15,130 @@ export default function Hero() {
     <section
       id="hero"
       ref={ref}
-      className="relative min-h-screen flex items-center justify-center overflow-hidden"
+      className="relative min-h-screen flex items-center bg-cream dark:bg-dark-bg overflow-hidden"
     >
-      {/* Background with gradient overlay */}
-      <div className="absolute inset-0">
-        <div
-          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-          style={{
-            backgroundImage:
-              "url('https://images.unsplash.com/photo-1635070041078-e363dbe005cb?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80')",
-          }}
-        />
-        <div className="absolute inset-0 bg-gradient-to-b from-[#00704A]/90 via-[#00704A]/70 to-[#0A0A0A]/95" />
-      </div>
-
-      {/* Animated particles */}
-      <div className="absolute inset-0 overflow-hidden">
-        {[...Array(15)].map((_, i) => (
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-0 w-full">
+        <div className="grid lg:grid-cols-2 gap-12 lg:gap-8 items-center">
+          {/* Left Column - Text Content (45%) */}
           <motion.div
-            key={i}
-            className="absolute w-1 h-1 bg-[#D4AF37]/20 rounded-full"
-            initial={{
-              x: Math.random() * 100 + "%",
-              y: "100%",
-              opacity: 0,
-            }}
-            animate={{
-              y: "-10%",
-              opacity: [0, 0.6, 0],
-            }}
-            transition={{
-              duration: Math.random() * 12 + 8,
-              repeat: Infinity,
-              delay: Math.random() * 5,
-              ease: "linear",
-            }}
-          />
-        ))}
-      </div>
-
-      {/* Content */}
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <motion.div
-          initial={{ opacity: 0, y: 50 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8, ease: "easeOut" }}
-          className="space-y-8"
-        >
-          {/* Typewriter Headline */}
-          <div className="h-24 sm:h-32 flex items-center justify-center">
-            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold font-['Playfair_Display',serif] text-white">
-              {displayText}
-              <span className="animate-pulse text-[#D4AF37]">|</span>
+            initial={{ opacity: 0, x: -50 }}
+            animate={inView ? { opacity: 1, x: 0 } : {}}
+            transition={{ duration: 0.8, ease: [0.4, 0, 0.2, 1] }}
+            className="text-left"
+          >
+            {/* Main Title */}
+            <h1 className="title-display text-5xl sm:text-6xl md:text-7xl lg:text-[80px] xl:text-[100px] text-dark-text dark:text-light-text mb-4 gold-underline">
+              RÉUSSIR
+              <br />
+              <span className="gradient-text">EN MATHS</span>
             </h1>
-          </div>
 
-          {/* Subheadline - Clear value proposition */}
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={inView ? { opacity: 1, y: 0 } : {}}
-            transition={{ delay: 0.4, duration: 0.6 }}
-            className="text-lg sm:text-xl md:text-2xl text-white/80 max-w-3xl mx-auto font-light leading-relaxed"
-          >
-            Deborah-Corp accompagne les élèves du collège au supérieur avec des cours
-            de mathématiques individuels. Notre méthode : identifier vos lacunes,
-            les combler, et vous donner confiance.
-          </motion.p>
+            {/* Subtitle */}
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={inView ? { opacity: 1, y: 0 } : {}}
+              transition={{ delay: 0.3, duration: 0.6 }}
+              className="font-cormorant text-lg sm:text-xl text-text-gray dark:text-light-text/70 max-w-lg mt-12 leading-relaxed"
+            >
+              Deborah-Corp accompagne les élèves du collège au supérieur avec des cours
+              de mathématiques individuels. Notre méthode : identifier vos lacunes,
+              les combler, et vous donner confiance.
+            </motion.p>
 
-          {/* Social proof - Specific numbers */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={inView ? { opacity: 1, y: 0 } : {}}
-            transition={{ delay: 0.6, duration: 0.6 }}
-            className="flex flex-wrap justify-center gap-8 sm:gap-16 pt-4"
-          >
-            {[
-              { value: "+3.2", label: "points de moyenne gagnés" },
-              { value: "847", label: "élèves accompagnés depuis 2019" },
-              { value: "94%", label: "de réussite au Bac" },
-            ].map((stat, index) => (
-              <div key={index} className="text-center">
-                <div className="text-3xl sm:text-4xl font-bold gradient-text font-['Playfair_Display',serif]">
-                  {stat.value}
+            {/* CTA Buttons */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              animate={inView ? { opacity: 1, y: 0 } : {}}
+              transition={{ delay: 0.5, duration: 0.6 }}
+              className="flex flex-col sm:flex-row items-start gap-4 mt-10"
+            >
+              <motion.a
+                href="#contact"
+                whileHover={{ scale: 1.02, y: -2 }}
+                whileTap={{ scale: 0.98 }}
+                className="bg-rolex-green hover:bg-rolex-green-dark text-white font-semibold px-8 py-4 rounded-lg text-lg transition-all duration-300 shadow-lg hover:shadow-xl flex items-center gap-2"
+              >
+                Réserver un cours d&apos;essai
+                <ArrowRight className="w-5 h-5" />
+              </motion.a>
+              <motion.a
+                href="#services"
+                whileHover={{ scale: 1.02, y: -2 }}
+                whileTap={{ scale: 0.98 }}
+                className="border-2 border-pure-gold text-rolex-green dark:text-pure-gold font-medium px-8 py-4 rounded-lg text-lg hover:bg-pure-gold/10 transition-all duration-300"
+              >
+                Comment ça marche ?
+              </motion.a>
+            </motion.div>
+
+            {/* Social proof - Stats in 3 columns */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              animate={inView ? { opacity: 1, y: 0 } : {}}
+              transition={{ delay: 0.7, duration: 0.6 }}
+              className="grid grid-cols-3 gap-6 mt-12 pt-8 border-t border-cream-dark dark:border-white/10"
+            >
+              {[
+                { value: "+3.2", label: "points de moyenne" },
+                { value: "847", label: "élèves accompagnés" },
+                { value: "94%", label: "de réussite" },
+              ].map((stat, index) => (
+                <div key={index} className="text-left">
+                  <div className="text-2xl sm:text-3xl lg:text-4xl font-bold gradient-text font-playfair">
+                    {stat.value}
+                  </div>
+                  <div className="text-text-gray dark:text-light-text/60 text-sm mt-1">
+                    {stat.label}
+                  </div>
                 </div>
-                <div className="text-white/60 text-sm mt-1 max-w-[140px]">{stat.label}</div>
-              </div>
-            ))}
+              ))}
+            </motion.div>
           </motion.div>
 
-          {/* CTA Buttons */}
+          {/* Right Column - Image (55%) */}
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={inView ? { opacity: 1, y: 0 } : {}}
-            transition={{ delay: 0.8, duration: 0.6 }}
-            className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-6"
+            initial={{ opacity: 0, x: 50 }}
+            animate={inView ? { opacity: 1, x: 0 } : {}}
+            transition={{ duration: 0.8, delay: 0.2, ease: [0.4, 0, 0.2, 1] }}
+            className="relative"
           >
-            <motion.a
-              href="#contact"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="shimmer-btn text-[#00704A] font-semibold px-8 py-4 rounded-full text-lg transition-all duration-300 hover:shadow-2xl hover:shadow-[#D4AF37]/40 flex items-center gap-2"
-            >
-              Réserver un cours d&apos;essai gratuit
-              <ArrowRight className="w-5 h-5" />
-            </motion.a>
-            <motion.a
-              href="#services"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="bg-white/10 backdrop-blur-sm text-white font-medium px-8 py-4 rounded-full text-lg border border-white/20 hover:bg-white/20 transition-all duration-300"
-            >
-              Comment ça marche ?
-            </motion.a>
-          </motion.div>
+            {/* Vertical Date */}
+            <div className="hidden lg:block absolute -right-4 top-1/2 -translate-y-1/2 z-10">
+              <div
+                className="text-xs font-medium tracking-[0.3em] text-text-gray dark:text-light-text/50 uppercase"
+                style={{ writingMode: "vertical-rl", textOrientation: "mixed" }}
+              >
+                JAN. 2026
+              </div>
+            </div>
 
-          {/* Trust element */}
-          <motion.p
-            initial={{ opacity: 0 }}
-            animate={inView ? { opacity: 1 } : {}}
-            transition={{ delay: 1, duration: 0.6 }}
-            className="text-white/50 text-sm pt-4"
-          >
-            Sans engagement · Annulation gratuite jusqu&apos;à 24h avant
-          </motion.p>
-        </motion.div>
+            {/* Main Image */}
+            <div className="relative group">
+              <motion.div
+                whileHover={{ scale: 1.02 }}
+                transition={{ duration: 0.6, ease: [0.4, 0, 0.2, 1] }}
+                className="relative overflow-hidden rounded-3xl shadow-2xl"
+                style={{ boxShadow: "0 40px 80px rgba(0, 112, 74, 0.15)" }}
+              >
+                <div
+                  className="aspect-[4/5] bg-cover bg-center transition-transform duration-700 group-hover:scale-105"
+                  style={{
+                    backgroundImage:
+                      "url('https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80')",
+                  }}
+                  role="img"
+                  aria-label="Étudiants en cours de mathématiques"
+                />
+                {/* Overlay on hover */}
+                <div className="absolute inset-0 bg-rolex-green/0 group-hover:bg-rolex-green/10 transition-colors duration-500" />
+              </motion.div>
+
+              {/* Decorative elements */}
+              <div className="absolute -bottom-6 -left-6 w-24 h-24 bg-gradient-to-br from-gold-shine to-pure-gold rounded-2xl opacity-80 -z-10" />
+              <div className="absolute -top-6 -right-6 w-16 h-16 border-2 border-rolex-green/30 rounded-xl -z-10" />
+            </div>
+          </motion.div>
+        </div>
       </div>
 
       {/* Scroll indicator */}
@@ -182,8 +147,8 @@ export default function Hero() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 1.2, duration: 0.6 }}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 text-white/60 hover:text-[#D4AF37] transition-colors cursor-pointer"
-        aria-label="Scroll down"
+        className="absolute bottom-8 left-1/2 -translate-x-1/2 text-rolex-green/60 hover:text-pure-gold transition-colors cursor-pointer"
+        aria-label="Défiler vers le bas"
       >
         <motion.div
           animate={{ y: [0, 10, 0] }}

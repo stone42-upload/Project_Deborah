@@ -25,11 +25,15 @@ export default function RootLayout({
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link 
-          href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700;800;900&display=swap" 
+          href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700;800;900&display=swap" 
           rel="stylesheet" 
         />
       </head>
       <body className="antialiased">
+        {/* Skip to main content for accessibility */}
+        <a href="#main" className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[999] focus:px-4 focus:py-2 focus:bg-[#00704A] focus:text-white focus:rounded-md focus:outline-none focus:ring-2 focus:ring-[#D4AF37]">
+          Aller au contenu principal
+        </a>
         {children}
       </body>
     </html>

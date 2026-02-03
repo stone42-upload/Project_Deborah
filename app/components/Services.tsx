@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
-import { User, Users, Calendar, Clock, CheckCircle, Video } from "lucide-react";
+import { User, Users, Calendar, CheckCircle, Video, Clock } from "lucide-react";
 import { fadeInUp, staggerContainer } from "@/lib/utils";
 
 const services = [
@@ -48,13 +48,8 @@ const process = [
   },
   {
     step: "03",
-    title: "Séances régulières",
-    description: "Cours hebdomadaires avec exercices entre les séances pour ancrer les acquis.",
-  },
-  {
-    step: "04",
-    title: "Suivi des progrès",
-    description: "Bilan mensuel envoyé aux parents avec les points travaillés et les prochaines étapes.",
+    title: "Suivi continu",
+    description: "Cours hebdomadaires avec exercices entre les séances et bilan mensuel de progression.",
   },
 ];
 
@@ -65,110 +60,110 @@ export default function Services() {
     <section
       id="services"
       ref={ref}
-      className="py-24 bg-light-bg dark:bg-dark-bg relative overflow-hidden"
+      className="py-24 lg:py-32 bg-white dark:bg-dark-bg relative overflow-hidden"
     >
-      {/* Background decoration */}
-      <div className="absolute top-0 right-0 w-1/3 h-1/3 bg-gradient-to-bl from-[#D4AF37]/5 to-transparent rounded-full blur-3xl" />
-      <div className="absolute bottom-0 left-0 w-1/4 h-1/4 bg-gradient-to-tr from-[#00704A]/5 to-transparent rounded-full blur-3xl" />
-
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Section Header */}
         <motion.div
           variants={fadeInUp}
           initial="hidden"
           animate={inView ? "visible" : "hidden"}
-          className="text-center mb-16"
+          className="text-center mb-20"
         >
-          <h2 className="text-4xl sm:text-5xl font-bold font-['Playfair_Display',serif] mb-6 text-dark-text dark:text-light-text">
-            Trouvez la formule qui vous{" "}
-            <span className="gradient-text">convient</span>
+          <h2 className="title-display text-4xl sm:text-5xl lg:text-6xl text-dark-text dark:text-light-text mb-6">
+            NOS <span className="gradient-text">FORMULES</span>
           </h2>
-          <p className="text-lg text-dark-text/70 dark:text-light-text/70 max-w-2xl mx-auto">
+          <p className="font-cormorant text-lg sm:text-xl text-text-gray dark:text-light-text/70 max-w-2xl mx-auto leading-relaxed">
             Que vous ayez besoin d&apos;un suivi régulier ou d&apos;un coup de pouce ponctuel,
             nous avons une solution adaptée à votre situation.
           </p>
         </motion.div>
 
-        {/* Service Cards */}
+        {/* Service Cards - Pictabooth style */}
         <motion.div
           variants={staggerContainer}
           initial="hidden"
           animate={inView ? "visible" : "hidden"}
-          className="grid md:grid-cols-3 gap-8 mb-24"
+          className="grid md:grid-cols-3 gap-8 mb-32"
         >
           {services.map((service, index) => (
             <motion.div
               key={index}
               variants={fadeInUp}
-              whileHover={{ y: -8 }}
-              className="group relative bg-white dark:bg-[#1a1a1a] rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-500"
+              className="group relative bg-white dark:bg-[#1a1a1a] rounded-3xl overflow-hidden shadow-soft card-hover hover:shadow-soft-hover"
             >
               {/* Image */}
-              <div className="relative h-44 overflow-hidden">
+              <div className="relative h-52 overflow-hidden">
                 <div
-                  className="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-105"
+                  className="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-108"
                   style={{ backgroundImage: `url('${service.image}')` }}
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
-                <div className="absolute bottom-4 left-4">
-                  <div className="w-10 h-10 bg-[#00704A] rounded-lg flex items-center justify-center">
-                    <service.icon className="w-5 h-5 text-white" />
+                {/* Gold icon badge - Pictabooth style */}
+                <div className="absolute bottom-5 left-5">
+                  <div className="w-16 h-16 bg-gradient-to-br from-gold-shine to-pure-gold rounded-2xl flex items-center justify-center shadow-lg">
+                    <service.icon className="w-7 h-7 text-rolex-green-dark" />
                   </div>
                 </div>
               </div>
 
               {/* Content */}
-              <div className="p-6">
-                <h3 className="text-xl font-semibold font-['Playfair_Display',serif] mb-3 text-dark-text dark:text-light-text">
+              <div className="p-8">
+                <h3 className="text-2xl font-semibold font-playfair mb-4 text-dark-text dark:text-light-text">
                   {service.title}
                 </h3>
-                <p className="text-dark-text/60 dark:text-light-text/60 mb-4 text-sm leading-relaxed">
+                <p className="font-cormorant text-text-gray dark:text-light-text/60 mb-6 text-lg leading-relaxed">
                   {service.description}
                 </p>
-                <ul className="space-y-2">
+                <ul className="space-y-3">
                   {service.features.map((feature, fIndex) => (
                     <li
                       key={fIndex}
                       className="flex items-center text-sm text-dark-text/70 dark:text-light-text/70"
                     >
-                      <CheckCircle className="w-4 h-4 text-[#00704A] mr-2 flex-shrink-0" />
+                      <CheckCircle className="w-5 h-5 text-rolex-green mr-3 flex-shrink-0" />
                       {feature}
                     </li>
                   ))}
                 </ul>
               </div>
-
-              {/* Hover border */}
-              <div className="absolute inset-0 border-2 border-transparent group-hover:border-[#00704A]/30 rounded-2xl transition-all duration-300 pointer-events-none" />
             </motion.div>
           ))}
         </motion.div>
 
-        {/* Process Section */}
+        {/* How it Works Section - Pictabooth Horizontal Style */}
         <motion.div
           variants={fadeInUp}
           initial="hidden"
           animate={inView ? "visible" : "hidden"}
-          className="mb-16"
+          className="mb-20"
         >
-          <h3 className="text-2xl sm:text-3xl font-bold font-['Playfair_Display',serif] text-center mb-12 text-dark-text dark:text-light-text">
-            Comment ça se passe ?
+          <h3 className="title-display text-3xl sm:text-4xl lg:text-5xl text-center mb-16 text-dark-text dark:text-light-text">
+            COMMENT ÇA <span className="gradient-text">MARCHE</span>
           </h3>
           
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          {/* 3 Column Horizontal Process Cards - Pill Shape */}
+          <div className="grid md:grid-cols-3 gap-8">
             {process.map((item, index) => (
               <motion.div
                 key={index}
-                variants={fadeInUp}
-                className="relative"
+                initial={{ opacity: 0, y: 40 }}
+                animate={inView ? { opacity: 1, y: 0 } : {}}
+                transition={{ delay: 0.2 * index, duration: 0.6, ease: [0.4, 0, 0.2, 1] }}
+                className="pill-card text-center flex flex-col items-center"
               >
-                <div className="text-5xl font-bold text-[#00704A]/10 dark:text-[#00704A]/20 font-['Playfair_Display',serif] mb-2">
+                {/* Step label */}
+                <span className="text-xs font-semibold tracking-[0.3em] text-white/60 uppercase mb-3">
+                  ÉTAPE
+                </span>
+                {/* Gold numbered circle */}
+                <div className="step-circle mb-6">
                   {item.step}
                 </div>
-                <h4 className="text-lg font-semibold mb-2 text-dark-text dark:text-light-text">
+                <h4 className="text-xl font-semibold font-playfair mb-4 text-white">
                   {item.title}
                 </h4>
-                <p className="text-dark-text/60 dark:text-light-text/60 text-sm leading-relaxed">
+                <p className="font-cormorant text-white/80 text-lg leading-relaxed">
                   {item.description}
                 </p>
               </motion.div>
@@ -181,35 +176,39 @@ export default function Services() {
           variants={fadeInUp}
           initial="hidden"
           animate={inView ? "visible" : "hidden"}
-          className="bg-[#00704A] rounded-2xl p-8 md:p-12"
+          className="bg-cream dark:bg-[#1a1a1a] rounded-3xl p-10 md:p-14"
         >
-          <div className="grid md:grid-cols-2 gap-8 items-center">
+          <div className="grid md:grid-cols-2 gap-10 items-center">
             <div>
-              <h3 className="text-2xl sm:text-3xl font-bold font-['Playfair_Display',serif] text-white mb-4">
-                Cours en ligne ou à domicile
+              <h3 className="title-display text-2xl sm:text-3xl lg:text-4xl text-dark-text dark:text-light-text mb-6">
+                EN LIGNE OU <span className="gradient-text">À DOMICILE</span>
               </h3>
-              <p className="text-white/80 mb-6 leading-relaxed">
+              <p className="font-cormorant text-text-gray dark:text-light-text/80 mb-8 text-lg leading-relaxed">
                 Nos professeurs se déplacent chez vous dans Paris et proche banlieue, 
                 ou donnent cours en visioconférence via notre plateforme dédiée.
                 Même qualité, même suivi.
               </p>
-              <div className="flex flex-wrap gap-4">
-                <div className="flex items-center gap-2 text-white/90">
-                  <Video className="w-5 h-5 text-[#D4AF37]" />
-                  <span className="text-sm">Visio HD</span>
+              <div className="flex flex-wrap gap-6">
+                <div className="flex items-center gap-3 text-dark-text/80 dark:text-white/90">
+                  <div className="w-10 h-10 bg-pure-gold/20 rounded-lg flex items-center justify-center">
+                    <Video className="w-5 h-5 text-pure-gold" />
+                  </div>
+                  <span className="text-sm font-medium">Visio HD</span>
                 </div>
-                <div className="flex items-center gap-2 text-white/90">
-                  <Clock className="w-5 h-5 text-[#D4AF37]" />
-                  <span className="text-sm">7j/7 de 8h à 22h</span>
+                <div className="flex items-center gap-3 text-dark-text/80 dark:text-white/90">
+                  <div className="w-10 h-10 bg-pure-gold/20 rounded-lg flex items-center justify-center">
+                    <Clock className="w-5 h-5 text-pure-gold" />
+                  </div>
+                  <span className="text-sm font-medium">7j/7 de 8h à 22h</span>
                 </div>
               </div>
             </div>
             <div className="text-center md:text-right">
               <motion.a
                 href="#contact"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="inline-block shimmer-btn text-[#00704A] font-semibold px-8 py-4 rounded-full transition-all duration-300"
+                whileHover={{ scale: 1.02, y: -2 }}
+                whileTap={{ scale: 0.98 }}
+                className="inline-block bg-rolex-green hover:bg-rolex-green-dark text-white font-semibold px-10 py-5 rounded-xl transition-all duration-300 shadow-lg hover:shadow-xl text-lg"
               >
                 Réserver mon cours d&apos;essai
               </motion.a>
